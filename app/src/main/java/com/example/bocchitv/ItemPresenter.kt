@@ -45,6 +45,6 @@ class ItemPresenter : Presenter() {
 
 
     override fun onUnbindViewHolder(viewHolder: ViewHolder?) {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
 }
