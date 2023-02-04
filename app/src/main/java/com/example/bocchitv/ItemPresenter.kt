@@ -37,13 +37,9 @@ class ItemPresenter : Presenter() {
         val imageView = viewHolder?.view?.findViewById<ImageView>(R.id.poster_image)
 
         val url = content?.image
-//        val url =
-//            "https://s3.amazonaws.com/koya-dev-videos/kindness/8da807aa-1e1e-413d-bf9b-5bb084646593/medialibrary/9456621508/videos/1eb78337-d569-41bd-95ad-153d9098de03.png"
-
         Glide.with(viewHolder?.view?.context!!)
             .load(url)
             .into(imageView!!)
-//        Picasso.get().load(url).into(imageView);
 
     }
 
