@@ -27,19 +27,16 @@ class RowListFragment : RowsSupportFragment() {
         onItemViewSelectedListener = ItemViewSelectedListener()
     }
 
-    fun bindData(rowDataList: List<RowListItem>){
+    fun bindData(item: RowListItem){
 
-        for(item in rowDataList){
-            val arrayObjectAdapter= ArrayObjectAdapter(ItemPresenter())
+        val arrayObjectAdapter= ArrayObjectAdapter(ItemPresenter())
 
-            item.rowAnimeList.results.forEach{ it->
-                arrayObjectAdapter.add(it)
-            }
-            val headerItem = HeaderItem(item.rowItemName)
-            val listRow = ListRow(headerItem,arrayObjectAdapter)
-            rootAdapter.add(listRow)
-
+        item.rowAnimeList.results.forEach{ it->
+            arrayObjectAdapter.add(it)
         }
+        val headerItem = HeaderItem(item.rowItemName)
+        val listRow = ListRow(headerItem,arrayObjectAdapter)
+        rootAdapter.add(listRow)
     }
 
     fun setOnContentSelectedListener(listener: (Result)->Unit){

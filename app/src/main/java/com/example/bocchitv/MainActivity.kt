@@ -21,12 +21,16 @@ import java.io.InputStreamReader
 
 class MainActivity : FragmentActivity() {
 
+    val HEADER_RECENT="Recent Anime"
+    val HEADER_TRENDING="Trending Anime"
+    val HEADER_POPULAR="Popular"
     lateinit var txtTitle: TextView
     lateinit var txtSubTitle: TextView
     lateinit var txtDescription: TextView
     lateinit var imgBanner: ImageView
     lateinit var rowListFragment: RowListFragment
-    var animeListItem: AnimeList?=null
+//    val rowListData = ArrayList<RowListItem>()
+    var isListenerSet = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,68 +39,101 @@ class MainActivity : FragmentActivity() {
         txtTitle = findViewById(R.id.title)
         txtDescription = findViewById(R.id.description)
         txtSubTitle = findViewById(R.id.subtitle)
-
-
         rowListFragment = RowListFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.list_fragment, rowListFragment)
         transaction.commit()
         fetchRecent()
 
-//        val gson = Gson()
-//        val i: InputStream = this.assets.open("Anime.json")
-//        val br = BufferedReader(InputStreamReader(i))
-
-//        val animeListItem: AnimeList = gson.fromJson(br, AnimeList::class.java)
-
-//        RowListItem List is created in onder to pass the data to RowListFragment
-
     }
 
-    private fun setData(){
-        val rowListData = ArrayList<RowListItem>()
-        for (i in 1..3) {
-            rowListData.add(RowListItem("Recent Anime $i", animeListItem!!))
-        }
-        rowListFragment.bindData(rowListData)
-//        Providing callback function here lambda for the listener
-        rowListFragment.setOnContentSelectedListener { item ->
-            txtTitle.text = item.title.english
-            txtDescription.text = getDescription(item)
-            Glide.with(this).load(item.image).into(imgBanner)
+    private fun setData(headerName: String,animeListItem:AnimeList) {
+        Log.d("Set DATA",headerName)
+        rowListFragment.bindData(RowListItem(headerName, animeListItem!!))
+        if (!isListenerSet) {
+            isListenerSet = true;
+            rowListFragment.setOnContentSelectedListener { item ->
+                txtTitle.text = item.title.english
+                txtDescription.text = getDescription(item)
+                Glide.with(this).load(item.image).into(imgBanner)
+            }
         }
     }
-
-//    Test function
 
     private fun fetchRecent() {
         var call = AnimeApiInstance.animeApi.getRecent();
+        var animeListItem: AnimeList? = null
         call.enqueue(object : Callback<AnimeList> {
             override fun onResponse(
-                call: Call<AnimeList>,
-                response: Response<AnimeList>
+                call: Call<AnimeList>, response: Response<AnimeList>
             ) {
-//                TODO("Not yet implemented")
                 if (!response.isSuccessful) {
                     Log.e("Fetch Recent Int", "Code ${response.code()}")
-                    return
+                    return fetchTrending()
                 }
-                if(response.body()!=null) {
+                if (response.body() != null) {
                     animeListItem = response.body()!!
-                    setData()
-                }
-                else
-                    Log.e("Fetch Body ","Response body is null" )
+                    setData(HEADER_RECENT, animeListItem!!)
+                } else Log.e("Fetch Body ", "Response body is null")
+                fetchTrending()
             }
 
             override fun onFailure(call: Call<AnimeList>, t: Throwable) {
 //                TODO("Not yet implemented")
                 Log.e("Fetch Recent Error", t.message.toString());
+                fetchTrending()
             }
 
         })
+    }
 
+    private fun fetchTrending() {
+        var call = AnimeApiInstance.animeApi.getTrending();
+        var animeListItem: AnimeList? = null
+        call.enqueue(object : Callback<AnimeList> {
+            override fun onResponse(
+                call: Call<AnimeList>, response: Response<AnimeList>
+            ) {
+                if (!response.isSuccessful) {
+                    Log.e("Fetch Trending Int", "Code ${response.code()}")
+                    return fetchPopular()
+                }
+                if (response.body() != null) {
+                    animeListItem = response.body()!!
+                    setData(HEADER_TRENDING, animeListItem!!)
+                } else Log.e("Fetch Body ", "Response body is null")
+                fetchPopular()
+            }
 
+            override fun onFailure(call: Call<AnimeList>, t: Throwable) {
+//                TODO("Not yet implemented")
+                Log.e("Fetch Trending Error", t.message.toString());
+                fetchPopular()
+            }
+        })
+    }
+    private fun fetchPopular() {
+        var call = AnimeApiInstance.animeApi.getPopular();
+        var animeListItem: AnimeList? = null
+        call.enqueue(object : Callback<AnimeList> {
+            override fun onResponse(
+                call: Call<AnimeList>, response: Response<AnimeList>
+            ) {
+                if (!response.isSuccessful) {
+                    Log.e("Fetch Popular Int", "Code ${response.code()}")
+                    return
+                }
+                if (response.body() != null) {
+                    animeListItem = response.body()!!
+                    setData(HEADER_POPULAR, animeListItem!!)
+                } else Log.e("Fetch Body ", "Response body is null")
+            }
+
+            override fun onFailure(call: Call<AnimeList>, t: Throwable) {
+//                TODO("Not yet implemented")
+                Log.e("Fetch Trending Error", t.message.toString());
+            }
+        })
     }
 
     private fun getDescription(item: Result): String {

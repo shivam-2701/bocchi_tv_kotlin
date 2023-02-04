@@ -42,8 +42,6 @@ class ItemPresenter : Presenter() {
             .into(imageView!!)
 
     }
-
-
     override fun onUnbindViewHolder(viewHolder: ViewHolder?) {
 //        TODO("Not yet implemented")
     }
