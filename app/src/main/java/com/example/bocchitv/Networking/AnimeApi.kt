@@ -2,7 +2,7 @@ package com.example.bocchitv.Networking
 
 import retrofit2.Call
 import retrofit2.http.GET
-import com.example.bocchitv.Models.AnimeList
+import com.example.bocchitv.Models.Main.AnimeList
 
 interface AnimeApi {
     @GET("recent-episodes?provider=animepahe")

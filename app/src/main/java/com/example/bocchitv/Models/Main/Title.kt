@@ -1,4 +1,4 @@
-package com.example.bocchitv.Models
+package com.example.bocchitv.Models.Main
 
 data class Title(
     val english: String,

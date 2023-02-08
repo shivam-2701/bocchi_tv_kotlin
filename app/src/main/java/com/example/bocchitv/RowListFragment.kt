@@ -1,16 +1,11 @@
 package com.example.bocchitv
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.leanback.app.RowsSupportFragment
 import androidx.leanback.widget.*
-import com.example.bocchitv.Models.AnimeList
-import com.example.bocchitv.Models.Result
-import com.example.bocchitv.Models.RowListItem
+import com.example.bocchitv.Models.Main.Result
+import com.example.bocchitv.Models.Main.RowListItem
 
 
 class RowListFragment : RowsSupportFragment() {
@@ -52,7 +47,7 @@ class RowListFragment : RowsSupportFragment() {
             row: Row?
         ) {
 //            TODO("Not yet implemented")
-            if(item is com.example.bocchitv.Models.Result){
+            if(item is Result){
                 itemSelectedListener?.invoke(item)
             }
         }

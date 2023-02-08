@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.leanback.widget.Presenter
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
+import com.example.bocchitv.Models.Main.Result
 
 class ItemPresenter : Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup?): ViewHolder {
@@ -32,7 +32,7 @@ class ItemPresenter : Presenter() {
 
     override fun onBindViewHolder(viewHolder: ViewHolder?, item: Any?) {
 //        TODO("Not yet implemented")
-        val content = item as? com.example.bocchitv.Models.Result
+        val content = item as? Result
 
         val imageView = viewHolder?.view?.findViewById<ImageView>(R.id.poster_image)
 

@@ -6,17 +6,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
-import com.example.bocchitv.Models.AnimeList
-import com.example.bocchitv.Models.RowListItem
-import com.google.gson.Gson
-import java.io.BufferedReader
-import com.example.bocchitv.Models.Result
+import com.example.bocchitv.Models.Main.AnimeList
+import com.example.bocchitv.Models.Main.RowListItem
+import com.example.bocchitv.Models.Main.Result
 import com.example.bocchitv.Networking.AnimeApiInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.InputStream
-import java.io.InputStreamReader
 
 
 class MainActivity : FragmentActivity() {
@@ -47,7 +43,7 @@ class MainActivity : FragmentActivity() {
 
     }
 
-    private fun setData(headerName: String,animeListItem:AnimeList) {
+    private fun setData(headerName: String,animeListItem: AnimeList) {
         Log.d("Set DATA",headerName)
         rowListFragment.bindData(RowListItem(headerName, animeListItem!!))
         if (!isListenerSet) {
