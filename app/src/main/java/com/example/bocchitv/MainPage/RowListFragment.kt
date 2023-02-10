@@ -1,4 +1,4 @@
-package com.example.bocchitv
+package com.example.bocchitv.MainPage
 
 import android.os.Bundle
 import android.view.View
@@ -32,6 +32,7 @@ class RowListFragment : RowsSupportFragment() {
         val headerItem = HeaderItem(item.rowItemName)
         val listRow = ListRow(headerItem,arrayObjectAdapter)
         rootAdapter.add(listRow)
+
     }
 
     fun setOnContentSelectedListener(listener: (Result)->Unit){

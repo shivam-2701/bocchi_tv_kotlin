@@ -1,4 +1,4 @@
-package com.example.bocchitv
+package com.example.bocchitv.MainPage
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.leanback.widget.Presenter
 import com.bumptech.glide.Glide
 import com.example.bocchitv.Models.Main.Result
+import com.example.bocchitv.R
 
 class ItemPresenter : Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup?): ViewHolder {

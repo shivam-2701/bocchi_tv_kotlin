@@ -1,4 +1,4 @@
-package com.example.bocchitv
+package com.example.bocchitv.MainPage
 
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,7 @@ import com.example.bocchitv.Models.Main.AnimeList
 import com.example.bocchitv.Models.Main.RowListItem
 import com.example.bocchitv.Models.Main.Result
 import com.example.bocchitv.Networking.AnimeApiInstance
+import com.example.bocchitv.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

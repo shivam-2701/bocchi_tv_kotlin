@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="160dp"
+    android:layout_height="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/poster_image"
+        android:layout_width="match_parent"
+        android:src="@color/lb_tv_white"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/relation_tv"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/round_button"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="4dp"
+        android:text="Prequel"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textFontWeight="600"
+        android:paddingHorizontal="6sp"
+        android:paddingVertical="8sp"
+        android:autoSizeTextType="uniform"
+        android:minLines="2"
+        android:text="Miss Kobayashi Dragon Maid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        android:background="#99000000"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
