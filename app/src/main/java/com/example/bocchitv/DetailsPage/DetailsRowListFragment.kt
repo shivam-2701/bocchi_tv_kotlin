@@ -59,7 +59,6 @@ class DetailsRowListFragment: RowsSupportFragment() {
         val headerItem = HeaderItem("Related Media")
         val listRow = ListRow(headerItem,relatedObjectAdapter)
         rootAdapter.add(listRow)
-
     }
 
 
