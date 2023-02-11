@@ -14,6 +14,7 @@ class EpisodePresenter:Presenter() {
 //        TODO("Not yet implemented")
         val view =
             LayoutInflater.from(parent?.context).inflate(R.layout.episode_item, parent, false);
+
         return ViewHolder(view)
     }
 

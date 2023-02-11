@@ -1,6 +1,7 @@
 package com.example.bocchitv.DetailsPage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.leanback.app.RowsSupportFragment
 import androidx.leanback.widget.*
@@ -15,9 +16,10 @@ class DetailsRowListFragment: RowsSupportFragment() {
 
     private var rootAdapter : ArrayObjectAdapter = ArrayObjectAdapter(
         ListRowPresenter(
-            FocusHighlight.ZOOM_FACTOR_MEDIUM)
+            FocusHighlight.ZOOM_FACTOR_MEDIUM,true)
     )
-    private var itemSelectedListener: ((Result)->Unit)?= null
+    private var episodeItemSelectedListener: ((Episode)->Unit)?= null
+    private var relatedItemSelectedListener: ((Relation)->Unit)?= null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,14 +41,11 @@ class DetailsRowListFragment: RowsSupportFragment() {
         val episodeHeaderItem= HeaderItem("Episodes")
         val listRow = ListRow(episodeHeaderItem,episodeObjectAdapter)
         rootAdapter.add(listRow)
-
-        setRelatedRow(animeData.relations)
-
-
+//        setRelatedRow(animeData.relations)
     }
 
-    fun setOnContentSelectedListener(listener: (Result)->Unit){
-        this.itemSelectedListener=listener
+    fun setOnContentSelectedListener(listener: (Episode)->Unit){
+        this.episodeItemSelectedListener=listener
     }
 
 
@@ -74,9 +73,11 @@ class DetailsRowListFragment: RowsSupportFragment() {
             row: Row?
         ) {
 //            TODO("Not yet implemented")
-            if(item is Result){
-                itemSelectedListener?.invoke(item)
-            }
+           if( row !=null && row!!.headerItem!!.name=="Episodes" && item is Episode){
+                episodeItemSelectedListener?.invoke(item as Episode)
+           }else{
+               Log.d("Selection Listener","Listener Activated")
+           }
         }
     }
 

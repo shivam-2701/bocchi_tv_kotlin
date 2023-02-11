@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
+import com.bumptech.glide.Glide
 import com.example.bocchitv.MainPage.RowListFragment
 import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.R
@@ -38,8 +39,10 @@ class DetailsActivity : FragmentActivity() {
 
         rowListFragment.bindData(animeDetails)
 
-        rowListFragment.setOnContentSelectedListener { item ->
-
+        rowListFragment.setOnContentSelectedListener { item->
+                txtTitle.text= item.number.toString()
+                txtDescription.text = "Test Description"
+                Glide.with(this).load(item.image).into(imgBanner)
         }
 
     }
