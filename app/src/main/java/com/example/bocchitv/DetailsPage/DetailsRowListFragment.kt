@@ -35,13 +35,15 @@ class DetailsRowListFragment: RowsSupportFragment() {
 
         val episodeObjectAdapter = ArrayObjectAdapter(EpisodePresenter())
 
-        animeData.episodes.forEach { it->
+        animeData.episodes?.forEach { it->
             episodeObjectAdapter.add(it)
         }
         val episodeHeaderItem= HeaderItem("Episodes")
         val listRow = ListRow(episodeHeaderItem,episodeObjectAdapter)
         rootAdapter.add(listRow)
+        if(animeData.relations!=null){
         setRelatedRow(animeData.relations)
+        }
     }
 
     fun setOnContentSelectedListener(listener: (Episode)->Unit){

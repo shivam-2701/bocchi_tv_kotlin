@@ -1,9 +1,9 @@
 package com.example.bocchitv.Models.Details
 
 data class Name(
-    val first: String,
-    val full: String,
-    val last: String,
-    val native: String,
-    val userPreferred: String
+    val first: String? = null,
+    val full: String? = null,
+    val last: String? = null,
+    val native: String? = null,
+    val userPreferred: String? = null
 )

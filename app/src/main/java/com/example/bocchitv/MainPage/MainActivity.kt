@@ -50,7 +50,7 @@ class MainActivity : FragmentActivity() {
         if (!isListenerSet) {
             isListenerSet = true;
             rowListFragment.setOnContentSelectedListener { item ->
-                txtTitle.text = item.title.english
+                txtTitle.text = item.title!!.english
                 txtDescription.text = getDescription(item)
                 Glide.with(this).load(item.image).into(imgBanner)
             }
@@ -135,7 +135,7 @@ class MainActivity : FragmentActivity() {
 
     private fun getDescription(item: Result): String {
         val builder = java.lang.StringBuilder()
-        for (st in item.genres) {
+        for (st in item!!.genres!!) {
             builder.append(st)
             builder.append(",")
         }

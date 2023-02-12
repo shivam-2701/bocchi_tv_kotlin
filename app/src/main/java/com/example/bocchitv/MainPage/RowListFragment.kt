@@ -26,7 +26,7 @@ class RowListFragment : RowsSupportFragment() {
 
         val arrayObjectAdapter= ArrayObjectAdapter(ItemPresenter())
 
-        item.rowAnimeList.results.forEach{ it->
+        item.rowAnimeList.results!!.forEach{ it->
             arrayObjectAdapter.add(it)
         }
         val headerItem = HeaderItem(item.rowItemName)

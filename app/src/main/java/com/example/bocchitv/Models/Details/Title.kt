@@ -1,8 +1,8 @@
 package com.example.bocchitv.Models.Details
 
 data class Title(
-    val english: String,
-    val native: String,
-    val romaji: String,
-    val userPreferred: String
+    val english: String? = null,
+    val native: String? = null,
+    val romaji: String? = null,
+    val userPreferred: String? = null
 )

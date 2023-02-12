@@ -1,7 +1,7 @@
 package com.example.bocchitv.Models.Details
 
 data class TitleXX(
-    val english: String,
-    val native: String,
-    val romaji: String
+    val english: String? = null,
+    val native: String? = null,
+    val romaji: String? = null
 )
