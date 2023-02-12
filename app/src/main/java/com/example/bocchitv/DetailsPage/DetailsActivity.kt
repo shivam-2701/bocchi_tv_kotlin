@@ -34,14 +34,21 @@ class DetailsActivity : FragmentActivity() {
         txtTitle = findViewById(R.id.title)
         txtDescription = findViewById(R.id.description)
         txtSubTitle = findViewById(R.id.subtitle)
+
+        val extra = intent.extras;
+        val episodeId: String? = extra!!.getString("EpisodeId")
+        if (episodeId != null) {
+            fetchEpisodeData(episodeId)
+        }
+        else{
+            fetchEpisodeData()
+        }
         rowListFragment = DetailsRowListFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.list_fragment, rowListFragment)
         transaction.commit()
 
-        fetchEpisodeData()
     }
-
     private  fun setData(){
         rowListFragment.bindData(animeDetails)
 
