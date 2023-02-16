@@ -38,6 +38,7 @@ class DetailsActivity : FragmentActivity() {
         val extra = intent.extras;
         val episodeId: String? = extra!!.getString("EpisodeId")
         if (episodeId != null) {
+            Log.d("Intent Key",episodeId)
             fetchEpisodeData(episodeId)
         }
         else{
@@ -68,6 +69,7 @@ class DetailsActivity : FragmentActivity() {
            ) {
                if (!response.isSuccessful) {
                    Log.e("Fetch Episode Int", "Code ${response.code()}")
+                   return
                }
                if (response.body() != null) {
                    animeDetails = response.body()!!

@@ -57,8 +57,8 @@ class MainActivity : FragmentActivity() {
                 Glide.with(this).load(item.image).into(imgBanner)
             }
             rowListFragment.setOnItemClickedListener { item->
+                Log.d("Listener Activated",item.id!!)
                 val intent= Intent(this, DetailsActivity::class.java)
-
                 intent.putExtra("EpisodeId",item.malId.toString())
                 startActivity(intent)
             }
@@ -110,7 +110,6 @@ class MainActivity : FragmentActivity() {
                 } else Log.e("Fetch Body ", "Response body is null")
                 fetchPopular()
             }
-
             override fun onFailure(call: Call<AnimeList>, t: Throwable) {
 //                TODO("Not yet implemented")
                 Log.e("Fetch Trending Error", t.message.toString());

@@ -1,6 +1,7 @@
 package com.example.bocchitv.MainPage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.leanback.app.RowsSupportFragment
 import androidx.leanback.widget.*
@@ -21,6 +22,7 @@ class RowListFragment : RowsSupportFragment() {
 
         //Setting up listener
         onItemViewSelectedListener = ItemViewSelectedListener()
+        onItemViewClickedListener= ItemViewClickedListener()
     }
 
     fun bindData(item: RowListItem){
@@ -64,6 +66,7 @@ class RowListFragment : RowsSupportFragment() {
             row: Row?
         ) {
 //            TODO("Not yet implemented")
+            Log.d("Listener Activated","From inside the RowSupportFragment")
             if(item is Result){
                 itemClickedListener?.invoke(item)
             }
