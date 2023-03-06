@@ -18,6 +18,4 @@ interface AnimeApi {
 
     @GET("info/{episodeId}?provider=animepahe")
     fun getEpisodeById(@Path("episodeId") episodeId:String):Call<AnimeDetails>
-//    @GET("info/14813?provider=animepahe")
-//    fun getEpisodeById():Call<AnimeDetails>
 }

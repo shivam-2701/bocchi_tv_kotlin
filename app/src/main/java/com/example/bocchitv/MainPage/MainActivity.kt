@@ -59,7 +59,7 @@ class MainActivity : FragmentActivity() {
             rowListFragment.setOnItemClickedListener { item->
                 Log.d("Listener Activated",item.id!!)
                 val intent= Intent(this, DetailsActivity::class.java)
-                intent.putExtra("EpisodeId",item.malId.toString())
+                intent.putExtra("EpisodeId",item.id.toString())
                 startActivity(intent)
             }
 
