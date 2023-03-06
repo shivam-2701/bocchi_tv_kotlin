@@ -2,6 +2,8 @@ package com.example.bocchitv.DetailsPage
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
@@ -27,6 +29,8 @@ class DetailsActivity : FragmentActivity() {
     lateinit var imgBanner: ImageView
     lateinit var rowListFragment: DetailsRowListFragment
     lateinit var animeDetails :AnimeDetails
+    lateinit var playImageButton: ImageButton
+    private var playButtonHidden= false;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
@@ -34,6 +38,7 @@ class DetailsActivity : FragmentActivity() {
         txtTitle = findViewById(R.id.title)
         txtDescription = findViewById(R.id.description)
         txtSubTitle = findViewById(R.id.subtitle)
+        playImageButton= findViewById(R.id.play_button)
 
         val extra = intent.extras;
         val episodeId: String? = extra!!.getString("EpisodeId")
@@ -54,9 +59,21 @@ class DetailsActivity : FragmentActivity() {
         rowListFragment.bindData(animeDetails)
 
         rowListFragment.setOnContentSelectedListener { item->
-            txtTitle.text= item.number.toString()
-            txtDescription.text = "Test Description"
+            txtTitle.text= animeDetails.title!!.english.toString()
+            if(item.description!=null && !item.description.isEmpty()){
+                txtDescription.text= item.description
+            }
+            if(playButtonHidden){
+                playImageButton.visibility= View.VISIBLE;
+                playButtonHidden=false
+            }
             Glide.with(this).load(item.image).into(imgBanner)
+        }
+        rowListFragment.setOnRelatedSelectedListener { item ->
+            if(!playButtonHidden) {
+                playImageButton.visibility = View.GONE;
+                playButtonHidden = true;
+            }
         }
     }
 
