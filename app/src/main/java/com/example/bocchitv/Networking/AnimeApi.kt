@@ -7,7 +7,7 @@ import com.example.bocchitv.Models.Main.AnimeList
 import retrofit2.http.Path
 
 interface AnimeApi {
-    @GET("recent-episodes?provider=animepahe")
+    @GET("recent?provider=animepahe")
     fun  getRecent(): Call<AnimeList>
 
     @GET("trending?provider=animepahe")
