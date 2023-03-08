@@ -67,10 +67,6 @@ class DetailsRowListFragment: RowsSupportFragment() {
         val listRow = ListRow(headerItem,relatedObjectAdapter)
         rootAdapter.add(listRow)
     }
-
-
-
-
     inner class ItemViewSelectedListener : OnItemViewSelectedListener {
 
         override fun onItemSelected(

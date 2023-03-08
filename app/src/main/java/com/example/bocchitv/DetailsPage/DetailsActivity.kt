@@ -1,5 +1,8 @@
 package com.example.bocchitv.DetailsPage
 
+import android.animation.ValueAnimator
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -53,6 +56,7 @@ class DetailsActivity : FragmentActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.list_fragment, rowListFragment)
         transaction.commit()
+        setButtonFocus();
 
     }
     private  fun setData(){
@@ -73,6 +77,17 @@ class DetailsActivity : FragmentActivity() {
             if(!playButtonHidden) {
                 playImageButton.visibility = View.GONE;
                 playButtonHidden = true;
+            }
+        }
+    }
+
+    private fun setButtonFocus(){
+        Log.d("PlayButton Listener","Listener set");
+        playImageButton.setOnFocusChangeListener { view, hasFocus ->
+            if(hasFocus){
+                view.setBackgroundColor(Color.GRAY);
+            }else{
+                view.setBackgroundColor(Color.TRANSPARENT)
             }
         }
     }
@@ -104,5 +119,9 @@ class DetailsActivity : FragmentActivity() {
 
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        Log.d("Window focus change","Focus changed");
+    }
 }
 

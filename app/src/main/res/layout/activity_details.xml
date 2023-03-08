@@ -92,7 +92,7 @@
         android:textSize="13sp"
         android:textColor="#fff"
         android:layout_marginTop="16dp"
-        android:maxLines="5"
+        android:maxLines="4"
         android:focusable="false"
         android:clickable="false"
         android:lineSpacingMultiplier="1.2"
@@ -117,7 +117,7 @@
         android:src="@drawable/play_button_image"
         app:layout_constraintBottom_toTopOf="@id/center_guideline"
         app:layout_constraintLeft_toRightOf="@id/side_guideline"
-        app:layout_constraintTop_toTopOf="@+id/description"
+        app:layout_constraintTop_toTopOf="@id/description"
         app:layout_constraintVertical_bias="1.0" />
 
     <androidx.fragment.app.FragmentContainerView
