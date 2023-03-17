@@ -1,11 +1,13 @@
 package com.example.bocchitv.MainPage
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
+import com.example.bocchitv.DetailsPage.DetailsActivity
 import com.example.bocchitv.Models.Main.AnimeList
 import com.example.bocchitv.Models.Main.RowListItem
 import com.example.bocchitv.Models.Main.Result
@@ -54,6 +56,13 @@ class MainActivity : FragmentActivity() {
                 txtDescription.text = getDescription(item)
                 Glide.with(this).load(item.image).into(imgBanner)
             }
+            rowListFragment.setOnItemClickedListener { item->
+                Log.d("Listener Activated",item.id!!)
+                val intent= Intent(this, DetailsActivity::class.java)
+                intent.putExtra("EpisodeId",item.id.toString())
+                startActivity(intent)
+            }
+
         }
     }
 
@@ -101,7 +110,6 @@ class MainActivity : FragmentActivity() {
                 } else Log.e("Fetch Body ", "Response body is null")
                 fetchPopular()
             }
-
             override fun onFailure(call: Call<AnimeList>, t: Throwable) {
 //                TODO("Not yet implemented")
                 Log.e("Fetch Trending Error", t.message.toString());

@@ -22,16 +22,14 @@
         <activity
             android:name=".DetailsPage.DetailsActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".MainPage.MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".MainPage.MainActivity"
-            android:exported="false" >
-
 
         </activity>
     </application>

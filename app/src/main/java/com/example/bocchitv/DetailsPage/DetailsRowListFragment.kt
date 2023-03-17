@@ -50,6 +50,12 @@ class DetailsRowListFragment: RowsSupportFragment() {
         this.episodeItemSelectedListener=listener
     }
 
+    fun setOnRelatedSelectedListener(listener:(Relation)->Unit){
+
+        this.relatedItemSelectedListener= listener
+
+    }
+
 
     private fun setRelatedRow(itemList: List<Relation>){
 
@@ -61,10 +67,6 @@ class DetailsRowListFragment: RowsSupportFragment() {
         val listRow = ListRow(headerItem,relatedObjectAdapter)
         rootAdapter.add(listRow)
     }
-
-
-
-
     inner class ItemViewSelectedListener : OnItemViewSelectedListener {
 
         override fun onItemSelected(
@@ -76,7 +78,12 @@ class DetailsRowListFragment: RowsSupportFragment() {
 //            TODO("Not yet implemented")
            if( row !=null && row!!.headerItem!!.name=="Episodes" && item is Episode){
                 episodeItemSelectedListener?.invoke(item as Episode)
-           }else{
+           }
+           else if(row!=null && row!!.headerItem!!.name.equals("Related Media") && item is Relation){
+               relatedItemSelectedListener?.invoke(item as Relation)
+           }
+
+           else{
                Log.d("Selection Listener","Listener Activated")
            }
         }
