@@ -8,7 +8,7 @@ object AnimePaheApiInstance {
 
     lateinit var retrofit: Retrofit
     lateinit var animePaheApi: AnimepaheApi
-    val BASE_URL ="https://animepahe.com/"
+    val BASE_URL ="https://animepahe.ru/"
 
     init {
         retrofit = Retrofit.Builder().baseUrl(BASE_URL)

@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object AnimeApiInstance {
     lateinit var retrofit:Retrofit
     lateinit var animeApi:AnimeApi
-    val BASE_URL ="https://anime-api-vnkr.onrender.com/"
+    val BASE_URL ="https://relieved-cyan-tuxedo.cyclic.app/"
 
     init{
         retrofit= Retrofit.Builder().baseUrl(BASE_URL)
