@@ -1,4 +1,4 @@
-package com.example.bocchitv.Networking
+package com.example.bocchitv.utils
 
 import android.util.Log
 

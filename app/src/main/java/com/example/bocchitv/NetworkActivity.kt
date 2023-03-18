@@ -4,7 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
-import com.example.bocchitv.Networking.*
+import com.example.bocchitv.utils.getVideoSource
+
 
 class NetworkActivity :FragmentActivity() {
 
