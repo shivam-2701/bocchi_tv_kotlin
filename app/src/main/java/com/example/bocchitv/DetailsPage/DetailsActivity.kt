@@ -16,6 +16,7 @@ import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.Models.Main.AnimeList
 import com.example.bocchitv.Networking.AnimeApiInstance
 import com.example.bocchitv.R
+import com.example.bocchitv.utils.getVideoSource
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -79,6 +80,14 @@ class DetailsActivity : FragmentActivity() {
                 playButtonHidden = true;
             }
         }
+        rowListFragment.setOnContentClickedListener { item ->
+            run {
+                getVideoSource(animeDetails, item.number!!) {
+                    Log.d("Episode Clicked", it.toString())
+                }
+            }
+        }
+
     }
 
     private fun setButtonFocus(){

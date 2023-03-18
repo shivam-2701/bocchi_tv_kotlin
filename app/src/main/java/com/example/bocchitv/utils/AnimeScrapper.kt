@@ -3,6 +3,7 @@ package com.example.bocchitv.utils
 import android.util.Log
 import com.example.bocchitv.Models.Animepahe.AnimePaheEpisosdeResult
 import com.example.bocchitv.Models.Animepahe.AnimepaheSearch
+import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.Networking.AnimePaheApiInstance
 
 import okhttp3.MediaType.Companion.toMediaType
@@ -44,12 +45,29 @@ fun getKwikUrl(jsonArray: JSONArray): String {
     return responseString
 }
 
-fun getVideoSource(updateUi: (List<HashMap<String, String>>) -> Unit) {
-    val animeId = "00e25f1b-3af1-92ae-46f5-3f46a5b944c2"
-    val episodeId = "8e805884b225721fdb1a7bd7eb220daaf8e8ba3b1fb7af72dd06f770a0094950"
-    val url = "https://animepahe.ru/play/$animeId/$episodeId"
-    Thread(Runnable {
+fun getVideoSource(anime:AnimeDetails,episodeNo:Int,updateUi: (List<HashMap<String, String>>) -> Unit) {
 
+    Thread(Runnable {
+        var animeSeason="unknown";
+        if(anime.season!=null){
+            animeSeason= anime.season.toString()
+        }
+        val page = Math.ceil((episodeNo/30).toDouble()).toInt()
+        val animeData=getEpisodeList(anime.title!!.english.toString(),anime.releaseDate!!,animeSeason,page)
+        val animeId=animeData.first
+        val episodeList = animeData.second
+        var episodeId=""
+//        TODO: Handle error if episodeList is empty
+//        if(episodeList.data==null){
+//            updateUi.invoke(ArrayList<HashMap<String,String>>())
+//        }
+        for(el in episodeList.data!!){
+            if(el!!.episode==episodeNo){
+                episodeId= el.session.toString()
+                break;
+            }
+        }
+        val url = "https://animepahe.ru/play/$animeId/$episodeId"
         try {
             val conn = Jsoup.connect(url)
                 .userAgent("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.57 Mobile Safari/537.36")
@@ -81,40 +99,39 @@ fun getVideoSource(updateUi: (List<HashMap<String, String>>) -> Unit) {
                     if (kwikArray.getJSONObject(i).getString("audio").equals(el["audio"]) &&
                         kwikArray.getJSONObject(i).getString("resolution").equals(el["resolution"])
                     ) {
-                        el.put("url", kwikArray.getJSONObject(i).getString("url"))
+                        var u= kwikArray.getJSONObject(i).getString("url")
+                        u= u.replace("cache","files")
+                        el.put("url",u)
                         break
                     }
                 }
-            }
-            for (el in sourceList) {
-                Log.d("SOURCE List", el.toString())
             }
             updateUi.invoke(sourceList)
         } catch (error: IOException) {
             Log.e("GET VideoSource Error", Log.getStackTraceString(error))
         }
-
     }).start()
 
 }
 
-fun getAnimepaheId(query: String, releasedYear: String, season: String = "unknown"): String {
+fun getAnimepaheId(query: String, releasedYear: String,season: String = "unknown"): String {
 
     try {
         val call = AnimePaheApiInstance.animePaheApi.fetchAnimePaheSearchList(query!!)
         val response = call.execute()
         if (response.isSuccessful) {
             val result: AnimepaheSearch = response.body()!!
+            Log.d("FETCH ANIME ID",releasedYear + " " + season)
+            Log.d("FETCH ANIME ID",response.toString())
+
             for(it in result.data!!){
                 if(season=="unknown" && it!!.year.toString()==releasedYear){
                     return it.session!!
                 }
-                else if(it!!.year.toString()== releasedYear && it.season.toString()==season){
+                else if(it!!.year.toString()== releasedYear && it.season.toString().lowercase()==season.lowercase()){
                     return it.session!!
                 }
             }
-
-        } else {
             Log.e("FETCH ANIME ID ERROR", response.errorBody().toString())
         }
     } catch (error: java.lang.Exception) {

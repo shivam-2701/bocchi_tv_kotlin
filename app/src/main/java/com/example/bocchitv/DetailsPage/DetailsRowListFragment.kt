@@ -20,6 +20,9 @@ class DetailsRowListFragment: RowsSupportFragment() {
     )
     private var episodeItemSelectedListener: ((Episode)->Unit)?= null
     private var relatedItemSelectedListener: ((Relation)->Unit)?= null
+
+    private var episodeItemClickedListener: ((Episode)->Unit)?= null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -28,6 +31,8 @@ class DetailsRowListFragment: RowsSupportFragment() {
 
         //Setting up listener
         onItemViewSelectedListener = ItemViewSelectedListener()
+        onItemViewClickedListener = ItemViewClickedListener()
+
     }
 
     fun bindData(animeData : AnimeDetails ){
@@ -54,6 +59,10 @@ class DetailsRowListFragment: RowsSupportFragment() {
 
         this.relatedItemSelectedListener= listener
 
+    }
+
+    fun setOnContentClickedListener(listener: (Episode) -> Unit){
+        this.episodeItemClickedListener= listener
     }
 
 
@@ -87,6 +96,28 @@ class DetailsRowListFragment: RowsSupportFragment() {
                Log.d("Selection Listener","Listener Activated")
            }
         }
+    }
+
+    inner class ItemViewClickedListener : OnItemViewClickedListener{
+        override fun onItemClicked(
+            itemViewHolder: Presenter.ViewHolder?,
+            item: Any?,
+            rowViewHolder: RowPresenter.ViewHolder?,
+            row: Row?
+        ) {
+//            TODO("Not yet implemented")
+            if( row !=null && row!!.headerItem!!.name=="Episodes" && item is Episode){
+                episodeItemClickedListener?.invoke(item as Episode)
+            }
+//            else if(row!=null && row!!.headerItem!!.name.equals("Related Media") && item is Relation){
+//                relatedItemSelectedListener?.invoke(item as Relation)
+//            }
+
+            else{
+                Log.d("Clicked Listener","Listener Activated")
+            }
+        }
+
     }
 
 }

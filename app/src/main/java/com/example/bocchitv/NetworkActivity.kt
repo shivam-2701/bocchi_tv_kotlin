@@ -15,14 +15,14 @@ class NetworkActivity :FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_network)
         textView= findViewById<TextView>(R.id.json_textView)
-        getVideoSource { response:List<HashMap<String,String>>->
-            runOnUiThread{
-                val builder= StringBuilder()
-                for(r in response){
-                    builder.append(r.toString() +"\n")
-                }
-                textView.text= builder.toString()
-            }
-        }
+//        getVideoSource { response:List<HashMap<String,String>>->
+//            runOnUiThread{
+//                val builder= StringBuilder()
+//                for(r in response){
+//                    builder.append(r.toString() +"\n")
+//                }
+//                textView.text= builder.toString()
+//            }
+//        }
     }
 }
