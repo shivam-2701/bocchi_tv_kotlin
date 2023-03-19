@@ -11,7 +11,7 @@ import com.example.bocchitv.R
 
 class ItemPresenter : Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup?): ViewHolder {
-//        TODO("Not yet implemented")
+
         val view =
             LayoutInflater.from(parent?.context).inflate(R.layout.item_view, parent, false);
         val params = view.layoutParams
@@ -32,7 +32,7 @@ class ItemPresenter : Presenter() {
 
 
     override fun onBindViewHolder(viewHolder: ViewHolder?, item: Any?) {
-//        TODO("Not yet implemented")
+
         val content = item as? Result
 
         val imageView = viewHolder?.view?.findViewById<ImageView>(R.id.poster_image)

@@ -49,7 +49,6 @@ class RowListFragment : RowsSupportFragment() {
             rowViewHolder: RowPresenter.ViewHolder?,
             row: Row?
         ) {
-//            TODO("Not yet implemented")
             if(item is Result){
                 itemSelectedListener?.invoke(item)
             }
@@ -65,7 +64,6 @@ class RowListFragment : RowsSupportFragment() {
             rowViewHolder: RowPresenter.ViewHolder?,
             row: Row?
         ) {
-//            TODO("Not yet implemented")
             Log.d("Listener Activated","From inside the RowSupportFragment")
             if(item is Result){
                 itemClickedListener?.invoke(item)

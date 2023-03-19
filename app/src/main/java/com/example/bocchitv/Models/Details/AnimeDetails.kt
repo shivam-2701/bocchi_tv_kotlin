@@ -1,5 +1,9 @@
 package com.example.bocchitv.Models.Details
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class AnimeDetails(
     val characters: List<Character>? = listOf(),
     val color: String? = "",
@@ -31,4 +35,4 @@ data class AnimeDetails(
     val totalEpisodes: Int? = 0,
     val trailer: Trailer? = Trailer(),
     val type: String? = ""
-)
+) : Parcelable
