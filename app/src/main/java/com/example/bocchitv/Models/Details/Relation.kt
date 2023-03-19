@@ -1,5 +1,9 @@
 package com.example.bocchitv.Models.Details
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Relation(
     val color: String? = "",
     val cover: String? = "",
@@ -12,4 +16,4 @@ data class Relation(
     val status: String? = "",
     val title: TitleXX? = TitleXX(),
     val type: String? = ""
-)
+) : Parcelable

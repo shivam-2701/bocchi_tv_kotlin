@@ -1,6 +1,7 @@
 package com.example.bocchitv.DetailsPage
 
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.Models.Main.AnimeList
 import com.example.bocchitv.Networking.AnimeApiInstance
 import com.example.bocchitv.R
+import com.example.bocchitv.VideoPlayerActivity
 import com.example.bocchitv.utils.getVideoSource
 import com.google.gson.Gson
 import retrofit2.Call
@@ -82,9 +84,10 @@ class DetailsActivity : FragmentActivity() {
         }
         rowListFragment.setOnContentClickedListener { item ->
             run {
-                getVideoSource(animeDetails, item.number!!) {
-                    Log.d("Episode Clicked", it.toString())
-                }
+                val intent = Intent(this,VideoPlayerActivity::class.java)
+                intent.putExtra("animeDetails",animeDetails)
+                intent.putExtra("episodeNo",item.number.toString())
+                startActivity(intent)
             }
         }
 
@@ -120,7 +123,6 @@ class DetailsActivity : FragmentActivity() {
            }
 
            override fun onFailure(call: Call<AnimeDetails>, t: Throwable) {
-//                TODO("Not yet implemented")
                Log.e("Fetch Episode Error", t.message.toString());
            }
 
