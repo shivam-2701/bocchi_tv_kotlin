@@ -36,7 +36,7 @@
                 android:id="@+id/btn_home"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="12dp"
                 android:drawableStart="@drawable/ic_home"
                 android:focusable="true" />
 
@@ -44,7 +44,7 @@
                 android:id="@+id/btn_watchlist"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="12dp"
                 android:drawableStart="@drawable/ic_watchlist"
                 android:focusable="true" />
 
@@ -53,14 +53,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="160dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="12dp"
                 android:drawableStart="@drawable/ic_settings"
                 android:focusable="true" />
             <TextView
                 android:id="@+id/btn_preferences"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="12dp"
                 android:drawableStart="@drawable/ic_preferences"
                 android:focusable="true" />
 
