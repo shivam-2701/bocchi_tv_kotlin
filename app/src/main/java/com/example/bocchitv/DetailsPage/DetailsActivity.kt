@@ -35,16 +35,14 @@ class DetailsActivity : FragmentActivity() {
     lateinit var imgBanner: ImageView
     lateinit var rowListFragment: DetailsRowListFragment
     lateinit var animeDetails :AnimeDetails
-    lateinit var playImageButton: ImageButton
     private var playButtonHidden= false;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details)
+        setContentView(R.layout.activity_float)
         imgBanner = findViewById(R.id.img_banner)
         txtTitle = findViewById(R.id.title)
         txtDescription = findViewById(R.id.description)
         txtSubTitle = findViewById(R.id.subtitle)
-        playImageButton= findViewById(R.id.play_button)
 
         val extra = intent.extras;
         val episodeId: String? = extra!!.getString("EpisodeId")
@@ -59,7 +57,6 @@ class DetailsActivity : FragmentActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.list_fragment, rowListFragment)
         transaction.commit()
-        setButtonFocus();
 
     }
     private  fun setData(){
@@ -70,17 +67,11 @@ class DetailsActivity : FragmentActivity() {
             if(item.description!=null && !item.description.isEmpty()){
                 txtDescription.text= item.description
             }
-            if(playButtonHidden){
-                playImageButton.visibility= View.VISIBLE;
-                playButtonHidden=false
-            }
+
             Glide.with(this).load(item.image).into(imgBanner)
         }
         rowListFragment.setOnRelatedSelectedListener { item ->
-            if(!playButtonHidden) {
-                playImageButton.visibility = View.GONE;
-                playButtonHidden = true;
-            }
+
         }
         rowListFragment.setOnContentClickedListener { item ->
             run {
@@ -93,16 +84,7 @@ class DetailsActivity : FragmentActivity() {
 
     }
 
-    private fun setButtonFocus(){
-        Log.d("PlayButton Listener","Listener set");
-        playImageButton.setOnFocusChangeListener { view, hasFocus ->
-            if(hasFocus){
-                view.setBackgroundColor(Color.GRAY);
-            }else{
-                view.setBackgroundColor(Color.TRANSPARENT)
-            }
-        }
-    }
+
 
     private fun fetchEpisodeData(episodeId:String="14813"){
        var call = AnimeApiInstance.animeApi.getEpisodeById(episodeId)
@@ -117,7 +99,8 @@ class DetailsActivity : FragmentActivity() {
                }
                if (response.body() != null) {
                    animeDetails = response.body()!!
-                           Log.d("EPISODE RESPONSE", response.raw().request.url.toString())
+//                   Log.d("EPISODE RESPONSE", response.raw().request.url.toString();
+                   setBannerImg();
                   return setData()
                } else Log.e("Fetch Body ", "Response body is null")
 
@@ -129,6 +112,11 @@ class DetailsActivity : FragmentActivity() {
 
        })
 
+    }
+
+    private fun setBannerImg() {
+        val coverUrl = animeDetails.cover!!
+        Glide.with(this).load(coverUrl).into(imgBanner)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
