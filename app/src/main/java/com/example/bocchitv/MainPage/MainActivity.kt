@@ -7,8 +7,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.BrowseFrameLayout
+import com.example.bocchitv.Fragments.SearchFragment
+import com.example.bocchitv.Fragments.SettingsFragment
+import com.example.bocchitv.Fragments.WatchlistFragment
 import com.example.bocchitv.R
 import com.example.bocchitv.utils.Common
+import com.example.bocchitv.utils.Constants
+
 
 class MainActivity : FragmentActivity(), View.OnKeyListener {
 
@@ -20,6 +25,7 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
     lateinit var btnUserPreferences:TextView
     lateinit var navBar:BrowseFrameLayout
     var SIDE_MENU= false
+    var selectedMenu =Constants.MENU_HOME
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,6 +48,7 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
     fun changeFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container,fragment).addToBackStack(null).commit()
+        closeMenu()
     }
 
     override fun onKey(view: View?, i: Int,keyEvent: KeyEvent?): Boolean {
@@ -51,6 +58,30 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
                 if(!SIDE_MENU){
                     openMenu()
                     SIDE_MENU=true
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_CENTER->{
+                when(view?.id){
+                    R.id.btn_search->{
+                        selectedMenu= Constants.MENU_SEARCH
+                        changeFragment(SearchFragment())
+                    }
+                    R.id.btn_watchlist->{
+                        selectedMenu= Constants.MENU_WATCHLIST
+                        changeFragment(WatchlistFragment())
+                    }
+                    R.id.btn_settings->{
+                        selectedMenu= Constants.MENU_SETTINGS
+                        changeFragment(SettingsFragment())
+                    }
+                    R.id.btn_preferences->{
+                        selectedMenu= Constants.MENU_PREFERENCES
+                        changeFragment(SearchFragment())
+                    }
+                    R.id.btn_home->{
+                        selectedMenu= Constants.MENU_HOME
+                        changeFragment(HomeFragment())
+                    }
                 }
             }
         }
