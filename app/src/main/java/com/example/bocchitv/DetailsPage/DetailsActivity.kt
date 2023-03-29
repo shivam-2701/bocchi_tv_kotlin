@@ -117,6 +117,7 @@ class DetailsActivity : FragmentActivity() {
                }
                if (response.body() != null) {
                    animeDetails = response.body()!!
+                           Log.d("EPISODE RESPONSE", response.raw().request.url.toString())
                   return setData()
                } else Log.e("Fetch Body ", "Response body is null")
 
