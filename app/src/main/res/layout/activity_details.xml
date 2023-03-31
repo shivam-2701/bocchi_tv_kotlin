@@ -102,23 +102,6 @@
         app:layout_constraintStart_toStartOf="@+id/side_guideline"
         android:layout_height="wrap_content"/>
 
-    <ImageButton
-        android:id="@+id/play_button"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:focusable="true"
-        android:clickable="true"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="false"
-        android:background="@android:color/transparent"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/play_button_image"
-        app:layout_constraintBottom_toTopOf="@id/center_guideline"
-        app:layout_constraintLeft_toRightOf="@id/side_guideline"
-        app:layout_constraintTop_toTopOf="@id/description"
-        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/list_fragment"

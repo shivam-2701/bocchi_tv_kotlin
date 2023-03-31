@@ -1,16 +1,15 @@
 package com.example.bocchitv.DetailsPage
 
+import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.leanback.app.RowsSupportFragment
 import androidx.leanback.widget.*
-import com.example.bocchitv.MainPage.ItemPresenter
 import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.Models.Details.Episode
 import com.example.bocchitv.Models.Details.Relation
-import com.example.bocchitv.Models.Main.Result
-import com.example.bocchitv.Models.Main.RowListItem
+
 
 class DetailsRowListFragment: RowsSupportFragment() {
 
@@ -23,11 +22,18 @@ class DetailsRowListFragment: RowsSupportFragment() {
 
     private var episodeItemClickedListener: ((Episode)->Unit)?= null
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //setting up adapter from within the class
         adapter = rootAdapter
+
+        val container = verticalGridView;
+        // Set the padding between row header and container
+        // Set the padding between row header and container
+
+        container.setPaddingRelative(12, 32, 0, 0)
 
         //Setting up listener
         onItemViewSelectedListener = ItemViewSelectedListener()
@@ -39,7 +45,6 @@ class DetailsRowListFragment: RowsSupportFragment() {
 
 
         val episodeObjectAdapter = ArrayObjectAdapter(EpisodePresenter())
-
         animeData.episodes?.forEach { it->
             episodeObjectAdapter.add(it)
         }
@@ -50,6 +55,7 @@ class DetailsRowListFragment: RowsSupportFragment() {
         setRelatedRow(animeData.relations)
         }
     }
+
 
     fun setOnContentSelectedListener(listener: (Episode)->Unit){
         this.episodeItemSelectedListener=listener
@@ -63,6 +69,12 @@ class DetailsRowListFragment: RowsSupportFragment() {
 
     fun setOnContentClickedListener(listener: (Episode) -> Unit){
         this.episodeItemClickedListener= listener
+    }
+    fun selectLastSelected(lastRow:Int=0){
+        val rowViewHolder = getRowViewHolder(lastRow)
+        val horizontalGridView = (rowViewHolder as ListRowPresenter.ViewHolder).gridView
+
+        horizontalGridView.getChildAt(0).requestFocus()
     }
 
 
@@ -98,6 +110,7 @@ class DetailsRowListFragment: RowsSupportFragment() {
         }
     }
 
+
     inner class ItemViewClickedListener : OnItemViewClickedListener{
         override fun onItemClicked(
             itemViewHolder: Presenter.ViewHolder?,
@@ -109,9 +122,6 @@ class DetailsRowListFragment: RowsSupportFragment() {
             if( row !=null && row!!.headerItem!!.name=="Episodes" && item is Episode){
                 episodeItemClickedListener?.invoke(item as Episode)
             }
-//            else if(row!=null && row!!.headerItem!!.name.equals("Related Media") && item is Relation){
-//                relatedItemSelectedListener?.invoke(item as Relation)
-//            }
 
             else{
                 Log.d("Clicked Listener","Listener Activated")

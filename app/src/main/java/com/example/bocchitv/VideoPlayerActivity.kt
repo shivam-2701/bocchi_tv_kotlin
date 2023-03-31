@@ -32,17 +32,24 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
         setContentView(R.layout.activity_player);
         playerView= findViewById(R.id.exoplayerView)
         progressBar= findViewById(R.id.progressBar)
-
+        simpleExoPlayer = ExoPlayer.Builder(this).build()
         if(intent.extras!=null){
             animeDetails= intent.getParcelableExtra("animeDetails") as AnimeDetails?
             episodeNo= intent.getStringExtra("episodeNo")?.toInt() ?: 1
         }
         setVideoSource(animeDetails!!,episodeNo)
+
     }
     override fun onStart(){
         super.onStart()
         setVideoSource(animeDetails!!,episodeNo)
     }
+
+    override fun onDestroy() {
+        releasePlayer()
+        super.onDestroy()
+    }
+
     override fun onStop() {
         super.onStop()
         releasePlayer()
@@ -108,10 +115,5 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
 
 
     }
-//    fun <T : Serializable?> Intent.getParcelableExtra(key: String, m_class: Class<T>): T {
-//        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-//            this.getParcelableExtra(key, m_class)!!
-//        else
-//            this.getParcelableExtra(key) as T
-//    }
+
 }

@@ -30,7 +30,10 @@ class RowListFragment : RowsSupportFragment() {
         val arrayObjectAdapter= ArrayObjectAdapter(ItemPresenter())
 
         item.rowAnimeList.results!!.forEach{ it->
-            arrayObjectAdapter.add(it)
+            if(it!!.title!!.english!=null && it!!.title!!.english!=""){
+                arrayObjectAdapter.add(it)
+            }
+
         }
         val headerItem = HeaderItem(item.rowItemName)
         val listRow = ListRow(headerItem,arrayObjectAdapter)

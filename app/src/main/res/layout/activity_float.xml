@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsPage.DetailsActivity">
+    tools:context=".DetailsPage.DetailsActivity"
+    android:descendantFocusability="beforeDescendants">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"
@@ -119,8 +120,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:focusable="true"
+            android:background="@drawable/selector_button"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/play_now"
+            android:focusedByDefault="true"
             android:text="Play"
             android:nextFocusDown="@id/list_fragment"
             app:layout_constraintTop_toBottomOf="@id/description" />
@@ -131,12 +134,14 @@
             android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/selector_button"
             android:focusable="true"
             android:text="WatchList"
+            android:nextFocusDown="@id/list_fragment"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/play_now"
-            app:layout_constraintTop_toBottomOf="@id/description"
-            android:nextFocusDown="@id/list_fragment"/>
+            app:layout_constraintTop_toBottomOf="@id/description"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -145,14 +150,18 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/list_fragment"
         android:layout_width="0dp"
+        android:nextFocusUp="@id/play_now"
+        android:focusable="false"
         android:layout_height="0dp"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintHeight_percent="0.60"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingTop="16dp"
+        android:background="@drawable/selector_button"
         app:layout_constraintTop_toBottomOf="@id/anime_description"
         android:name="com.example.bocchitv.DetailsPage.DetailsRowListFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout="@layout/episode_item" />
 
 
