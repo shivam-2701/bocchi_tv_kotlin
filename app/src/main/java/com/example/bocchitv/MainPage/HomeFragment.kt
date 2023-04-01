@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
     lateinit var txtDescription: TextView
     lateinit var imgBanner: ImageView
     lateinit var rowListFragment: RowListFragment
-//    val rowListData = ArrayList<RowListItem>()
     var isListenerSet = false
 
 

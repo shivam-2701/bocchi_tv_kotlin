@@ -74,11 +74,11 @@ class DetailsActivity : FragmentActivity(), View.OnKeyListener {
         playButton.requestFocus()
 
 
-        playButton.setOnFocusChangeListener { view, hasFocus ->
-            if(hasFocus){
-                setBannerImg()
-            }
-        }
+//        playButton.setOnFocusChangeListener { view, hasFocus ->
+//            if(hasFocus){
+//                setBannerImg()
+//            }
+//        }
 
         transaction.commit()
 

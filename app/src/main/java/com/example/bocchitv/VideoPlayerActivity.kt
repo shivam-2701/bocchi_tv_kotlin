@@ -46,10 +46,13 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
     }
 
     override fun onDestroy() {
-        releasePlayer()
         super.onDestroy()
     }
 
+    override fun onPause() {
+        super.onPause()
+        releasePlayer()
+    }
     override fun onStop() {
         super.onStop()
         releasePlayer()
