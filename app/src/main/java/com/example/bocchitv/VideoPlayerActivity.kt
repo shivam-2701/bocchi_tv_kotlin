@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.FragmentActivity
 import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.Models.Details.Episode
+import com.example.bocchitv.Models.MediaInfo
 import com.example.bocchitv.utils.getVideoSource
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
@@ -24,7 +25,7 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
     private var mediaUrl = "https://eu-11.files.nextcdn.org/hls/11/07/4356426c58a8b20f5b0caa306d5b08315b81e0ded059782f6958d43c87efef9b/owo.m3u8"
     private lateinit var playerView: StyledPlayerView
     private lateinit var progressBar: ProgressBar
-    private var animeDetails: AnimeDetails? =null
+    private var animeDetails: MediaInfo? =null
     private  var episodeNo=0
     private val dataSourceFactory= DefaultHttpDataSource.Factory();
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
         progressBar= findViewById(R.id.progressBar)
         simpleExoPlayer = ExoPlayer.Builder(this).build()
         if(intent.extras!=null){
-            animeDetails= intent.getParcelableExtra("animeDetails") as AnimeDetails?
+            animeDetails= intent.getParcelableExtra("animeDetails") as MediaInfo?
             episodeNo= intent.getStringExtra("episodeNo")?.toInt() ?: 1
         }
         setVideoSource(animeDetails!!,episodeNo)
@@ -97,7 +98,7 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
         Log.e("Player Error", Log.getStackTraceString(error))
     }
 
-    private fun setVideoSource(animeDetails: AnimeDetails,episodeNo:Int) {
+    private fun setVideoSource(animeDetails: MediaInfo,episodeNo:Int) {
 
         getVideoSource(animeDetails,episodeNo){videoUrl->
             if(!videoUrl.isEmpty()){

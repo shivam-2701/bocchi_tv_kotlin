@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.bocchitv.MainPage.RowListFragment
 import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.Models.Main.AnimeList
+import com.example.bocchitv.Models.MediaInfo
 import com.example.bocchitv.Networking.AnimeApiInstance
 import com.example.bocchitv.R
 import com.example.bocchitv.VideoPlayerActivity
@@ -100,7 +101,7 @@ class DetailsActivity : FragmentActivity(), View.OnKeyListener {
         rowListFragment.setOnContentClickedListener { item ->
             run {
                 val intent = Intent(this,VideoPlayerActivity::class.java)
-                intent.putExtra("animeDetails",animeDetails)
+                intent.putExtra("animeDetails",MediaInfo(animeDetails))
                 intent.putExtra("episodeNo",item.number.toString())
                 startActivity(intent)
             }

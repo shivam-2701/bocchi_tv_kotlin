@@ -65,7 +65,12 @@ class HomeFragment : Fragment() {
         if (!isListenerSet) {
             isListenerSet = true;
             rowListFragment.setOnContentSelectedListener { item ->
-                txtTitle.text = item.title!!.english
+                if(item.title!=null  && item.title.english!=null) {
+                    txtTitle.text = item.title!!.english
+                }
+                else{
+                    txtTitle.text= item.title!!.romaji
+                }
                 txtDescription.text = getDescription(item)
                 Glide.with(this).load(item.image).into(imgBanner)
             }
