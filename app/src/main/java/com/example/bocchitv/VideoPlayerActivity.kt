@@ -13,7 +13,6 @@ import com.example.bocchitv.Models.Details.Episode
 import com.example.bocchitv.Models.MediaInfo
 import com.example.bocchitv.utils.getVideoSource
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.MimeTypes
@@ -38,7 +37,7 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
             animeDetails= intent.getParcelableExtra("animeDetails") as MediaInfo?
             episodeNo= intent.getStringExtra("episodeNo")?.toInt() ?: 1
         }
-        setVideoSource(animeDetails!!,episodeNo)
+
 
     }
     override fun onStart(){
@@ -48,14 +47,17 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
 
     override fun onDestroy() {
         super.onDestroy()
+        releasePlayer()
     }
 
     override fun onPause() {
         super.onPause()
+        simpleExoPlayer.stop()
         releasePlayer()
     }
     override fun onStop() {
         super.onStop()
+        simpleExoPlayer.stop()
         releasePlayer()
     }
     private fun initializePlayer(){
@@ -63,7 +65,7 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
         preparePlayer(mediaUrl)
         playerView.player=simpleExoPlayer
         simpleExoPlayer.seekTo(playbackPosition)
-        simpleExoPlayer.playWhenReady = true
+        simpleExoPlayer.playWhenReady = false
         simpleExoPlayer.addListener(this)
     }
 
@@ -79,16 +81,7 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
     }
 
 
-    private fun buildMediaSource(uri: Uri): HlsMediaSource {
 
-        val mediaItem = MediaItem.Builder()
-            .setUri(mediaUrl)
-            .setMimeType(MimeTypes.APPLICATION_M3U8) //m3u8 is the extension used with HLS sources
-            .build()
-        val hlsMediaSource= HlsMediaSource.Factory(dataSourceFactory)
-            .createMediaSource(mediaItem);
-        return hlsMediaSource
-    }
 
     private fun releasePlayer() {
         playbackPosition = simpleExoPlayer.currentPosition
