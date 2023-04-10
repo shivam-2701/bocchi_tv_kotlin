@@ -3,24 +3,29 @@ package com.example.bocchitv.Fragments
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.leanback.widget.*
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bocchitv.R
 import com.example.bocchitv.SearchItemPresenter
 import com.example.bocchitv.SearchRepository
 
 
-class SearchFragment :Fragment() {
+class SearchFragment :Fragment(){
 
     lateinit var searchEditText: SearchEditText
     lateinit var animeVGridView:VerticalGridView
     lateinit var searchRepository:SearchRepository
     val adapter = ItemBridgeAdapter()
+    var mAdapter=ArrayObjectAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,12 +47,12 @@ class SearchFragment :Fragment() {
         searchRepository=SearchRepository()
         animeVGridView.adapter=adapter
         searchRepository.getSearchResult().observe(viewLifecycleOwner){
-            val mAdapter= ArrayObjectAdapter(SearchItemPresenter())
-
+            val Adapter= ArrayObjectAdapter(SearchItemPresenter())
             it.results!!.forEach {
-                mAdapter.add(it)
+                Adapter.add(it)
             }
-            adapter.setAdapter(mAdapter)
+            mAdapter=Adapter
+            adapter.setAdapter(Adapter)
         }
 
         searchEditText.apply {
@@ -63,6 +68,17 @@ class SearchFragment :Fragment() {
                 }
             }
         }
+       animeVGridView.setOnChildSelectedListener(object :OnChildSelectedListener{
+           override fun onChildSelected(parent: ViewGroup?, view: View?, position: Int, id: Long) {
+//               TODO("Not yet implemented")
+               Log.d("SELECTED ITEM",mAdapter[position].toString())
+           }
+
+       })
+
+
+
+
 
     }
     fun hideKeyboardFrom(context: Context, view: View) {
