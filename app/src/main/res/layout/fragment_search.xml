@@ -36,32 +36,11 @@
 
     <!--    TODO: add a list of past searched Entries-->
 
-    <!--    <androidx.leanback.widget.VerticalGridView-->
-    <!--        android:id="@+id/search_grid_view"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:clipChildren="false"-->
-    <!--        android:clipToPadding="false"-->
-    <!--        android:padding="16dp"-->
-    <!--        app:focusOutEnd="true"-->
-    <!--        android:clickable="true"-->
-    <!--        android:descendantFocusability="afterDescendants"-->
-    <!--        android:nextFocusUp="@id/search_edit_text"-->
-    <!--        android:focusable="true"-->
-    <!--        app:focusOutFront="true"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="@id/side_guideline"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/search_edit_text"-->
-    <!--        app:numberOfColumns="5"-->
-    <!--        android:verticalSpacing="16dp"-->
-    <!--        tools:listitem="@layout/details_card_item" />-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/search_grid_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:clickable="true"
         android:clipChildren="false"
         android:clipToPadding="false"

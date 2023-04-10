@@ -2,6 +2,7 @@ package com.example.bocchitv.Fragments
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,20 +13,21 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bocchitv.MainPage.RowListFragment
 import com.example.bocchitv.R
 import com.example.bocchitv.SearchItemPresenter
 import com.example.bocchitv.SearchRepository
+import com.example.bocchitv.SearchVerticalGridFragment
 
 
 class SearchFragment :Fragment(){
 
     lateinit var searchEditText: SearchEditText
-    lateinit var animeVGridView:VerticalGridView
     lateinit var searchRepository:SearchRepository
-    val adapter = ItemBridgeAdapter()
-    var mAdapter=ArrayObjectAdapter()
+    lateinit var animeSearchGV: SearchVerticalGridFragment
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,23 +40,18 @@ class SearchFragment :Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init(view)
-
     }
 
     private fun init(view: View) {
         searchEditText= view.findViewById(R.id.search_edit_text)
-        animeVGridView= view.findViewById(R.id.search_grid_view)
+        animeSearchGV = SearchVerticalGridFragment()
+        val transaction =  childFragmentManager.beginTransaction()
+        transaction.add(R.id.search_grid_view, animeSearchGV)
+        transaction.commit()
         searchRepository=SearchRepository()
-        animeVGridView.adapter=adapter
         searchRepository.getSearchResult().observe(viewLifecycleOwner){
-            val Adapter= ArrayObjectAdapter(SearchItemPresenter())
-            it.results!!.forEach {
-                Adapter.add(it)
-            }
-            mAdapter=Adapter
-            adapter.setAdapter(Adapter)
+            animeSearchGV.updateCards(it.results!!)
         }
-
         searchEditText.apply {
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
@@ -68,18 +65,19 @@ class SearchFragment :Fragment(){
                 }
             }
         }
-       animeVGridView.setOnChildSelectedListener(object :OnChildSelectedListener{
-           override fun onChildSelected(parent: ViewGroup?, view: View?, position: Int, id: Long) {
-//               TODO("Not yet implemented")
-               Log.d("SELECTED ITEM",mAdapter[position].toString())
-           }
 
-       })
+        animeSearchGV.onItemViewClickedListener= object:OnItemViewClickedListener{
+            override fun onItemClicked(
+                itemViewHolder: Presenter.ViewHolder?,
+                item: Any?,
+                rowViewHolder: RowPresenter.ViewHolder?,
+                row: Row?
+            ) {
+                val intent= Intent()
 
+            }
 
-
-
-
+        }
     }
     fun hideKeyboardFrom(context: Context, view: View) {
         val imm: InputMethodManager =

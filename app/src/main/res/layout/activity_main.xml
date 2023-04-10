@@ -45,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginStart="12dp"
+                android:focusedByDefault="true"
                 android:background="@drawable/selector_menu"
                 android:drawableStart="@drawable/ic_home"
                 android:focusable="true"

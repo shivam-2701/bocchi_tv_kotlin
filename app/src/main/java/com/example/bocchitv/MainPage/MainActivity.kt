@@ -16,8 +16,6 @@ import com.example.bocchitv.utils.Constants
 
 
 class MainActivity : FragmentActivity(), View.OnKeyListener {
-
-
     lateinit var btnSearch:TextView
     lateinit var btnHome:TextView
     lateinit var btnWatchlist:TextView
@@ -41,8 +39,6 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
         btnWatchlist.setOnKeyListener(this)
         btnSettings.setOnKeyListener(this)
         btnUserPreferences.setOnKeyListener(this)
-
-
         changeFragment(HomeFragment())
     }
     fun changeFragment(fragment: Fragment){
@@ -82,6 +78,16 @@ class MainActivity : FragmentActivity(), View.OnKeyListener {
                         selectedMenu= Constants.MENU_HOME
                         changeFragment(HomeFragment())
                     }
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_DOWN ->{
+                if(!SIDE_MENU){
+                    openMenu()
+                }
+            }
+            KeyEvent.KEYCODE_DPAD_UP ->{
+                if(!SIDE_MENU){
+                    openMenu()
                 }
             }
         }
