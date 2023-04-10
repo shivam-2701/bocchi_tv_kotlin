@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="startPadding">32dp</dimen>
+    <dimen name="endPadding">32dp</dimen>
+</resources>

@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.bocchitv.Models.Animepahe.AnimePaheEpisosdeResult
 import com.example.bocchitv.Models.Animepahe.AnimepaheSearch
 import com.example.bocchitv.Models.Details.AnimeDetails
+import com.example.bocchitv.Models.MediaInfo
 import com.example.bocchitv.Networking.AnimePaheApiInstance
 
 import okhttp3.MediaType.Companion.toMediaType
@@ -39,13 +40,14 @@ fun getKwikUrl(jsonArray: JSONArray): String {
     val mediaType = "application/json; charset=utf-8".toMediaType()
     val requestBody = jsonArray.toString().toRequestBody(mediaType)
     val url = apiUrl + "/watch?url=" + URLEncoder.encode(jsonArray.toString(), "UTF-8");
+    Log.d("KWIK URL",url.toString())
     val request = Request.Builder().url(url).build()
     val response = httpClient.newCall(request).execute()
     val responseString = response.body!!.string()
     return responseString
 }
 
-fun getVideoSource(anime:AnimeDetails,episodeNo:Int,updateUi: (List<HashMap<String, String>>) -> Unit) {
+fun getVideoSource(anime:MediaInfo,episodeNo:Int,updateUi: (List<HashMap<String, String>>) -> Unit) {
 
     Thread(Runnable {
         var animeSeason="unknown";
@@ -68,6 +70,7 @@ fun getVideoSource(anime:AnimeDetails,episodeNo:Int,updateUi: (List<HashMap<Stri
             }
         }
         val url = "https://animepahe.ru/play/$animeId/$episodeId"
+        Log.d("PLAY URL", url.toString())
         try {
             val conn = Jsoup.connect(url)
                 .userAgent("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.5563.57 Mobile Safari/537.36")
@@ -106,6 +109,7 @@ fun getVideoSource(anime:AnimeDetails,episodeNo:Int,updateUi: (List<HashMap<Stri
                     }
                 }
             }
+
             updateUi.invoke(sourceList)
         } catch (error: IOException) {
             Log.e("GET VideoSource Error", Log.getStackTraceString(error))
