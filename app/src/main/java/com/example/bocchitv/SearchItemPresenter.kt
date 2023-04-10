@@ -1,9 +1,12 @@
 package com.example.bocchitv
 
+import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.leanback.widget.Presenter
 import com.bumptech.glide.Glide
 import com.example.bocchitv.Models.SearchAnimeResults
@@ -27,9 +30,13 @@ class SearchItemPresenter:Presenter() {
 
         typeTv.text= content?.type.toString()
         titleTv.text= content?.title!!.english
+        if(titleTv.text.toString().trim().isEmpty()){
+            titleTv.text= content.title.romaji
+        }
     }
 
     override fun onUnbindViewHolder(viewHolder: ViewHolder?) {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
+
     }
 }
