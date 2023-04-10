@@ -16,7 +16,9 @@ import androidx.fragment.app.Fragment
 import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bocchitv.DetailsPage.DetailsActivity
 import com.example.bocchitv.MainPage.RowListFragment
+import com.example.bocchitv.Models.SearchAnimeResults
 import com.example.bocchitv.R
 import com.example.bocchitv.SearchItemPresenter
 import com.example.bocchitv.SearchRepository
@@ -73,8 +75,10 @@ class SearchFragment :Fragment(){
                 rowViewHolder: RowPresenter.ViewHolder?,
                 row: Row?
             ) {
-                val intent= Intent()
-
+                item as SearchAnimeResults.Result
+                val intent= Intent(context, DetailsActivity::class.java)
+                intent.putExtra("EpisodeId",item.id.toString())
+                startActivity(intent)
             }
 
         }
