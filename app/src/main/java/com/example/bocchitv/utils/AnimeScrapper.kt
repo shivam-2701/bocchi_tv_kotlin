@@ -3,8 +3,7 @@ package com.example.bocchitv.utils
 import android.util.Log
 import com.example.bocchitv.Models.Animepahe.AnimePaheEpisosdeResult
 import com.example.bocchitv.Models.Animepahe.AnimepaheSearch
-import com.example.bocchitv.Models.Details.AnimeDetails
-import com.example.bocchitv.Models.MediaInfo
+import com.example.bocchitv.Models.Utility.MediaInfo
 import com.example.bocchitv.Networking.AnimePaheApiInstance
 
 import okhttp3.MediaType.Companion.toMediaType
@@ -47,7 +46,7 @@ fun getKwikUrl(jsonArray: JSONArray): String {
     return responseString
 }
 
-fun getVideoSource(anime:MediaInfo,episodeNo:Int,updateUi: (List<HashMap<String, String>>) -> Unit) {
+fun getVideoSource(anime: MediaInfo, episodeNo:Int, updateUi: (List<HashMap<String, String>>) -> Unit) {
 
     Thread(Runnable {
         var animeSeason="unknown";

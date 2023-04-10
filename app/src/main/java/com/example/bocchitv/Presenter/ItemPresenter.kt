@@ -1,4 +1,4 @@
-package com.example.bocchitv.MainPage
+package com.example.bocchitv.Presenter
 
 import android.content.Context
 import android.view.LayoutInflater

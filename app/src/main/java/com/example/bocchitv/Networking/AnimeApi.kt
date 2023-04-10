@@ -4,7 +4,7 @@ import com.example.bocchitv.Models.Details.AnimeDetails
 import retrofit2.Call
 import retrofit2.http.GET
 import com.example.bocchitv.Models.Main.AnimeList
-import com.example.bocchitv.Models.SearchAnimeResults
+import com.example.bocchitv.Models.Utility.SearchAnimeResults
 import retrofit2.http.Path
 
 interface AnimeApi {
@@ -21,5 +21,5 @@ interface AnimeApi {
     fun getEpisodeById(@Path("episodeId") episodeId:String):Call<AnimeDetails>
 
     @GET("/search/{query}")
-    suspend fun getSearchResult(@Path("query") query:String):SearchAnimeResults
+    suspend fun getSearchResult(@Path("query") query:String): SearchAnimeResults
 }

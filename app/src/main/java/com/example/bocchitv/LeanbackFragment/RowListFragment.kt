@@ -1,4 +1,4 @@
-package com.example.bocchitv.MainPage
+package com.example.bocchitv.LeanbackFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import androidx.leanback.app.RowsSupportFragment
 import androidx.leanback.widget.*
 import com.example.bocchitv.Models.Main.Result
 import com.example.bocchitv.Models.Main.RowListItem
+import com.example.bocchitv.Presenter.ItemPresenter
 
 
 class RowListFragment : RowsSupportFragment() {

@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.fragment.app.FragmentActivity
-import com.example.bocchitv.Models.MediaInfo
+import com.example.bocchitv.Models.Utility.MediaInfo
 import com.example.bocchitv.utils.getVideoSource
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -95,7 +95,7 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
         Log.e("Player Error", Log.getStackTraceString(error))
     }
 
-    private fun setVideoSource(animeDetails: MediaInfo,episodeNo:Int) {
+    private fun setVideoSource(animeDetails: MediaInfo, episodeNo:Int) {
 
         getVideoSource(animeDetails,episodeNo){videoUrl->
             if(!videoUrl.isEmpty()){

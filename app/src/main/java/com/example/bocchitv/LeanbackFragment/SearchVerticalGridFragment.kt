@@ -1,11 +1,12 @@
-package com.example.bocchitv
+package com.example.bocchitv.LeanbackFragment
 
 import android.os.Bundle
 import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.ArrayObjectAdapter
 import androidx.leanback.widget.FocusHighlight
 import androidx.leanback.widget.VerticalGridPresenter
-import com.example.bocchitv.Models.SearchAnimeResults
+import com.example.bocchitv.Models.Utility.SearchAnimeResults
+import com.example.bocchitv.Presenter.SearchItemPresenter
 
 class SearchVerticalGridFragment : VerticalGridSupportFragment() {
 

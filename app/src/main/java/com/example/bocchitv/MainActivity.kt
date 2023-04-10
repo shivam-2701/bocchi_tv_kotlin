@@ -1,4 +1,4 @@
-package com.example.bocchitv.MainPage
+package com.example.bocchitv
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.BrowseFrameLayout
+import com.example.bocchitv.Fragments.HomeFragment
 import com.example.bocchitv.Fragments.SearchFragment
 import com.example.bocchitv.Fragments.SettingsFragment
 import com.example.bocchitv.Fragments.WatchlistFragment

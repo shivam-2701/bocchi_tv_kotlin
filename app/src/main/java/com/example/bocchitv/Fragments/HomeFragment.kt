@@ -1,4 +1,4 @@
-package com.example.bocchitv.MainPage
+package com.example.bocchitv.Fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.bocchitv.DetailsPage.DetailsActivity
+import com.example.bocchitv.DetailsActivity
+import com.example.bocchitv.LeanbackFragment.RowListFragment
 import com.example.bocchitv.Models.Main.AnimeList
 import com.example.bocchitv.Models.Main.RowListItem
 import com.example.bocchitv.Models.Main.Result

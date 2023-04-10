@@ -3,7 +3,7 @@ package com.example.bocchitv
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.bocchitv.Models.SearchAnimeResults
+import com.example.bocchitv.Models.Utility.SearchAnimeResults
 import com.example.bocchitv.Networking.AnimeApiInstance
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

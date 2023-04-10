@@ -1,6 +1,5 @@
-package com.example.bocchitv.DetailsPage
+package com.example.bocchitv.LeanbackFragment
 
-import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +8,8 @@ import androidx.leanback.widget.*
 import com.example.bocchitv.Models.Details.AnimeDetails
 import com.example.bocchitv.Models.Details.Episode
 import com.example.bocchitv.Models.Details.Relation
+import com.example.bocchitv.Presenter.EpisodePresenter
+import com.example.bocchitv.Presenter.RelatedPresenter
 
 
 class DetailsRowListFragment: RowsSupportFragment() {

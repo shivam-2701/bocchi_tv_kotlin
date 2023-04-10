@@ -1,36 +1,24 @@
-package com.example.bocchitv.DetailsPage
+package com.example.bocchitv
 
-import android.animation.ValueAnimator
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.BrowseFrameLayout
 import com.bumptech.glide.Glide
-import com.example.bocchitv.MainPage.RowListFragment
+import com.example.bocchitv.LeanbackFragment.DetailsRowListFragment
 import com.example.bocchitv.Models.Details.AnimeDetails
-import com.example.bocchitv.Models.Main.AnimeList
-import com.example.bocchitv.Models.MediaInfo
+import com.example.bocchitv.Models.Utility.MediaInfo
 import com.example.bocchitv.Networking.AnimeApiInstance
-import com.example.bocchitv.R
-import com.example.bocchitv.VideoPlayerActivity
 import com.example.bocchitv.utils.Common
-import com.example.bocchitv.utils.getVideoSource
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
 
 class DetailsActivity : FragmentActivity(), View.OnKeyListener {
 
@@ -48,7 +36,7 @@ class DetailsActivity : FragmentActivity(), View.OnKeyListener {
     private var lastColumn=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_float)
+        setContentView(R.layout.activity_details)
         imgBanner = findViewById(R.id.img_banner)
         txtTitle = findViewById(R.id.title)
         txtDescription = findViewById(R.id.description)
@@ -75,12 +63,6 @@ class DetailsActivity : FragmentActivity(), View.OnKeyListener {
         playButton.requestFocus()
 
 
-//        playButton.setOnFocusChangeListener { view, hasFocus ->
-//            if(hasFocus){
-//                setBannerImg()
-//            }
-//        }
-
         transaction.commit()
 
     }
@@ -101,7 +83,7 @@ class DetailsActivity : FragmentActivity(), View.OnKeyListener {
         rowListFragment.setOnContentClickedListener { item ->
             run {
                 val intent = Intent(this,VideoPlayerActivity::class.java)
-                intent.putExtra("animeDetails",MediaInfo(animeDetails))
+                intent.putExtra("animeDetails", MediaInfo(animeDetails))
                 intent.putExtra("episodeNo",item.number.toString())
                 startActivity(intent)
             }

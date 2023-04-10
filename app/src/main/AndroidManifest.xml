@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BocchiTv">
         <activity
-            android:name=".MainPage.MainActivity"
+            android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,16 +29,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailsPage.DetailsActivity"
+            android:name=".DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainPage.HomeFragment"
+            android:name=".Fragments.HomeFragment"
             android:exported="true">
 
         </activity>
-        <activity
-            android:name=".NetworkActivity"
-            android:exported="false" />
         <activity
             android:name=".VideoPlayerActivity"
             android:exported="false" />

@@ -4,25 +4,18 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.*
-import androidx.recyclerview.widget.RecyclerView
-import com.example.bocchitv.DetailsPage.DetailsActivity
-import com.example.bocchitv.MainPage.RowListFragment
-import com.example.bocchitv.Models.SearchAnimeResults
+import com.example.bocchitv.DetailsActivity
+import com.example.bocchitv.Models.Utility.SearchAnimeResults
 import com.example.bocchitv.R
-import com.example.bocchitv.SearchItemPresenter
 import com.example.bocchitv.SearchRepository
-import com.example.bocchitv.SearchVerticalGridFragment
+import com.example.bocchitv.LeanbackFragment.SearchVerticalGridFragment
 
 
 class SearchFragment :Fragment(){

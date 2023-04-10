@@ -1,4 +1,4 @@
-package com.example.bocchitv.Models
+package com.example.bocchitv.Models.Utility
 
 import android.os.Parcelable
 import com.example.bocchitv.Models.Details.AnimeDetails
