@@ -1,22 +1,20 @@
 package com.example.bocchitv
 
-import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.fragment.app.FragmentActivity
-import com.example.bocchitv.Models.Details.AnimeDetails
-import com.example.bocchitv.Models.Details.Episode
 import com.example.bocchitv.Models.MediaInfo
 import com.example.bocchitv.utils.getVideoSource
-import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.PlaybackException
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.MimeTypes
-import java.io.Serializable
 
 class VideoPlayerActivity:FragmentActivity(), Player.Listener {
     private lateinit var simpleExoPlayer: ExoPlayer
@@ -40,6 +38,8 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
 
 
     }
+
+
     override fun onStart(){
         super.onStart()
         setVideoSource(animeDetails!!,episodeNo)
@@ -48,6 +48,10 @@ class VideoPlayerActivity:FragmentActivity(), Player.Listener {
     override fun onDestroy() {
         super.onDestroy()
         releasePlayer()
+    }
+
+    override fun onIsPlayingChanged(isPlaying: Boolean) {
+        playerView.keepScreenOn = isPlaying
     }
 
     override fun onPause() {
