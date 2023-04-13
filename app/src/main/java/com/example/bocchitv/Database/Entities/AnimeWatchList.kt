@@ -1,4 +1,4 @@
-package com.example.bocchitv.Models.Utility
+package com.example.bocchitv.Database.Entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

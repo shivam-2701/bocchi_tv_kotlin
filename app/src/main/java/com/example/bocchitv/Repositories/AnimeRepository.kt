@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import com.example.bocchitv.Database.AnimeDatabase
 import com.example.bocchitv.Database.AnimeHistoryDao
 import com.example.bocchitv.Database.AnimeWatchlistDao
-import com.example.bocchitv.Models.Utility.AnimeHistory
-import com.example.bocchitv.Models.Utility.AnimeWatchList
+import com.example.bocchitv.Database.Entities.AnimeHistory
+import com.example.bocchitv.Database.Entities.AnimeWatchList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -69,7 +69,7 @@ class AnimeRepository(application: Application) {
         }
     }
 
-    fun getAnimeHistoryList():LiveData<List<AnimeHistory{
+    fun getAnimeHistoryList():LiveData<List<AnimeHistory>>{
        return animeHistoryDao.getAll()
     }
 

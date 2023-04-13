@@ -2,7 +2,7 @@ package com.example.bocchitv.Database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.bocchitv.Models.Utility.AnimeHistory
+import com.example.bocchitv.Database.Entities.AnimeHistory
 
 @Dao
 interface AnimeHistoryDao {
