@@ -7,13 +7,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.bocchitv.Database.Entities.AnimeHistory
-import com.example.bocchitv.Database.Entities.AnimeWatchList
+import com.example.bocchitv.Database.Entities.AnimeWatch
 
-@Database(entities = [AnimeHistory::class, AnimeWatchList::class],version=1)
+@Database(entities = [AnimeHistory::class, AnimeWatch::class],version=1)
 abstract class AnimeDatabase:RoomDatabase() {
 
     abstract fun animeHistoryDao():AnimeHistoryDao
-    abstract fun animeWatchlistDao():AnimeWatchlistDao
+    abstract fun animeWatchlistDao():AnimeWatchDao
 
     companion object{
 

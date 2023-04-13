@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.bocchitv.Database.AnimeDatabase
 import com.example.bocchitv.Database.AnimeHistoryDao
-import com.example.bocchitv.Database.AnimeWatchlistDao
+import com.example.bocchitv.Database.AnimeWatchDao
 import com.example.bocchitv.Database.Entities.AnimeHistory
-import com.example.bocchitv.Database.Entities.AnimeWatchList
+import com.example.bocchitv.Database.Entities.AnimeWatch
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,18 +15,18 @@ class AnimeRepository(application: Application) {
 
 //    Doa instances
     private lateinit var animeHistoryDao: AnimeHistoryDao
-    private lateinit var animeWatchlistDao: AnimeWatchlistDao
+    private lateinit var animeWatchDao: AnimeWatchDao
 
 //    LiveData Variables
     private lateinit var allAnimeHistory: LiveData<List<AnimeHistory>>
-    private lateinit var allAnimeWatchList: LiveData<List<AnimeWatchList>>
+    private lateinit var allAnimeWatch: LiveData<List<AnimeWatch>>
 
     init{
 
         val database= AnimeDatabase.getInstance(application)
 
         animeHistoryDao= database.animeHistoryDao()
-        animeWatchlistDao= database.animeWatchlistDao()
+        animeWatchDao= database.animeWatchlistDao()
     }
 
     fun insertAnimeHistory(animeHistory: AnimeHistory){
@@ -49,23 +49,23 @@ class AnimeRepository(application: Application) {
         }
     }
 
-    fun insertAnimeWatchlist(animeWatchList: AnimeWatchList){
+    fun insertAnimeWatchlist(animeWatch: AnimeWatch){
 
         CoroutineScope(Dispatchers.IO).launch {
-            animeWatchlistDao.insert(animeWatchList)
+            animeWatchDao.insert(animeWatch)
         }
 
     }
 
-    fun updateAnimeHistory(animeWatchList: AnimeWatchList){
+    fun updateAnimeWatchlist(animeWatch: AnimeWatch){
         CoroutineScope(Dispatchers.IO).launch {
-            animeWatchlistDao.update(animeWatchList)
+            animeWatchDao.update(animeWatch)
         }
     }
 
-    fun deleteAnimeHistory(animeWatchList: AnimeWatchList){
+    fun deleteAnimeWatchlist(animeWatch: AnimeWatch){
         CoroutineScope(Dispatchers.IO).launch {
-            animeWatchlistDao.delete(animeWatchList)
+            animeWatchDao.delete(animeWatch)
         }
     }
 
@@ -73,8 +73,8 @@ class AnimeRepository(application: Application) {
        return animeHistoryDao.getAll()
     }
 
-    fun getAnimeWatchList():LiveData<List<AnimeWatchList>>{
-        return animeWatchlistDao.getAll()
+    fun getAnimeWatchList():LiveData<List<AnimeWatch>>{
+        return animeWatchDao.getAll()
     }
 
 
