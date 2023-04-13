@@ -12,7 +12,8 @@ data class MediaInfo(
     val cover: String? = "",
     val malId: Int? = 0,
     val image: String? = "",
-    val releaseDate: Int? = 0
+    val releaseDate: Int? = 0,
+    var episodeNo:Int =0
 ) :
     Parcelable {
     constructor(animeDetails: AnimeDetails) : this(
@@ -21,8 +22,19 @@ data class MediaInfo(
         animeDetails.cover,
         animeDetails.malId,
         animeDetails.image,
-        animeDetails.releaseDate
+        animeDetails.releaseDate,
     ) {
+
+    }
+    constructor(animeDetails: AnimeDetails,episodeNo: Int):this(
+        animeDetails.title,
+        animeDetails.season,
+        animeDetails.cover,
+        animeDetails.malId,
+        animeDetails.image,
+        animeDetails.releaseDate,
+        episodeNo
+    ){
 
     }
 }
