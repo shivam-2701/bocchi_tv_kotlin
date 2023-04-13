@@ -38,9 +38,6 @@ abstract class AnimeDatabase:RoomDatabase() {
             }
         }
 
-
-
-
     }
 
 }

@@ -18,5 +18,5 @@ interface AnimeWatchlistDao {
     suspend fun delete(animeWatchList: AnimeWatchList);
 
     @Query("SELECT * FROM anime_watch_list ORDER BY creationDate DESC")
-    fun getAllNotes(): LiveData<List<AnimeWatchList>>
+    fun getAll(): LiveData<List<AnimeWatchList>>
 }

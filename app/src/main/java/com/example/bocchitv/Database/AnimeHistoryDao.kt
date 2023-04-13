@@ -17,6 +17,6 @@ interface AnimeHistoryDao {
     suspend fun delete(animeHistory: AnimeHistory);
 
     @Query("SELECT * FROM anime_watch_history ORDER BY creationDate DESC")
-    fun getAllNotes():LiveData<List<AnimeHistory>>
+    fun getAll():LiveData<List<AnimeHistory>>
 
 }
